@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepfake Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="background-shape"></div>
+    <div class="main-container">
+        
+        <div id="upload-section" class="card">
+            <div class="card-header">
+                <div>
+                    <h1>Deepfake detector</h1>
+                    <p class="subtitle">Forensic AI Analysis Engine</p>
+                </div>
+                <div class="toggle-switch">
+                    <button class="active" id="btn-image">Image</button>
+                    <button id="btn-video">Video</button>
+                </div>
+            </div>
+            <div class="upload-area" id="drop-zone">
+                <div class="icon-upload">⬆️</div>
+                <h3>Insert your image file</h3>
+                <p>Drop media here or click to browse</p>
+                <input type="file" id="file-input" hidden>
+            </div>
+            <button class="action-btn" id="detect-btn">Detect</button>
+        </div>
+
+        <div id="loading-section" class="card" style="display: none;">
+            <h2>Processing Your Media</h2>
+            <p class="subtitle">Our AI is analyzing artifacts...</p>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <p id="progress-text">Initializing... 0%</p>
+        </div>
+
+        <div id="result-section" class="card" style="display: none;">
+            <div class="result-header">
+                <h2 id="result-title">Scan Results</h2>
+                <button class="back-btn" onclick="location.reload()">⬅</button>
+            </div>
+            <div class="media-preview" id="media-preview"></div>
+            <div class="status-box" id="status-box"></div>
+            <div class="analysis-grid">
+                <div class="chart-container">
+                    <canvas id="probabilityChart"></canvas>
+                    <div class="center-text">
+                        <span id="center-percent">0%</span>
+                        <small>AI PROBABILITY</small>
+                    </div>
+                </div>
+                <div class="details-list">
+                    <div class="detail-item"><span class="dot red"></span> AI Component <strong class="right-val" id="val-ai">0%</strong></div>
+                    <div class="detail-item"><span class="dot green"></span> Organic <strong class="right-val" id="val-organic">0%</strong></div>
+                    <button class="action-btn dark" onclick="location.reload()">Analyze New Sample</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
